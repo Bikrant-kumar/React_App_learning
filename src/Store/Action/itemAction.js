@@ -7,6 +7,11 @@ export const deleteItem = (id) => {
     return { type: "DELETE_ITEM", id }
 }
 
+export const deleteRow =(table,rowId,rowCost) => {
+    return {type: "DELETE_ROW", table,rowId,rowCost}
+    debugger
+}
+
 export const deleteTable =(id) => {
     return { type: "DELETE_TABLE", id }
 }
@@ -17,6 +22,10 @@ export const getState =(data) => {
 
 export const getFailure = (err) => {
     return {type: "FAILURE", err }
+}
+
+export const deleteAllItem = (table) => {
+    return {type: "DELETE_ALL_ITEM", table }
 }
 
 export const sort =(

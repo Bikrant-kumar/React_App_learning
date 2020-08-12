@@ -3,27 +3,24 @@ import AddItem from '../Organisms/AddItem'
 import ItemList from '../Organisms/ItemList'
 import TableList from '../Organisms/TableList'
 import styled, { ThemeProvider } from 'styled-components'
-import {DragDropContext} from 'react-beautiful-dnd'
-import {sort,getState,getFailure} from '../../Store/Action/itemAction';
+import { DragDropContext } from 'react-beautiful-dnd'
+import { sort,getState } from '../../Store/Action/itemAction';
 import { useDispatch } from 'react-redux';
-import NavBar from '../Molecules/navbar';
+import NavBar from '../Molecules/Navbar';
 import { createMuiTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
 import { Typography } from '@material-ui/core'
 
+
+// background-color: #ccc;
 const ListContainer = styled.div`
-background-color: #ccc;
 border-radius:3px;
 width:68%;
 padding:8px;
 float:right;
 margin-right:1%;
 margin-top:12px;
-margin-bottom:12px;
 `
 const ListTable = styled.div`
-background-color: #ccc;
 border-radius:3px;
 width:29%;
 padding:8px;
@@ -38,10 +35,17 @@ margin-top:12px;
 const theme = createMuiTheme({
     palette: {
       primary: {
-        main: purple[500],
+        light: '#757ce8',
+        main: '#3f50b5',
+        dark: '#002884',
+        contrastText: '#fff',
       },
       secondary: {
-        main: green[500],
+        light: '#ff7961',
+        main: '#f44336',
+        dark: '#ba000d',
+        contrastText: '#000',
+ 
       },
     },
     typography: {
@@ -64,17 +68,6 @@ function Home() {
       data => dispatch(getState(data)),
       err => dispatch({ type: 'FAILURE', err })
     );
-
-    //     const apiUrl = 'http://localhost:3000/posts';
-    // fetch(apiUrl)
-    //   .then(
-    //       (response) => response.json())
-    //   .then(
-    //        (data) => console.log('This is your data', data),
-    //     //   (data) => dispatch(getState(data))
-    //         (data)=> setGetState(data)
-    //       //     err => dispatch({type:'LOAD_FAILURE',err})
-    //       );
         }, []);
 
 const onDragEnd = (result) => {
@@ -104,10 +97,10 @@ const onDragEnd = (result) => {
         <Typography>
             <DragDropContext onDragEnd={onDragEnd}>
                 <NavBar/>
-                <ListTable>
+                <ListTable className='#b3e5fc light-blue lighten-3'>
                     <TableList/>
                 </ListTable>            
-                <ListContainer>
+                <ListContainer className='#b0bec5 blue-grey lighten-5 '>
                     <AddItem /> 
                     <ItemList />
                 </ListContainer> 

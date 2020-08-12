@@ -2,11 +2,11 @@ import React,{useState} from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import Modal from '@material-ui/core/Modal';
 import TableData from './TableData';
-
-
+import Label from '../Atoms/Label'
+import Box from '@material-ui/core/Box';
 
 function TableDetail({table,index,id}) {
-
+  debugger  
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
@@ -17,18 +17,18 @@ function TableDetail({table,index,id}) {
       setOpen(false);
     }; 
 
-    return (        
-                <div >    
+    return (
+               <div data-testid="tableDetails">    
                         <div  className="col s12 m12 center ">
                              <Droppable droppableId={String(id)}>
                         {provided => (
-                        <div  {...provided.droppableProps} ref ={provided.innerRef} className="card hoverable" >
-                                <div className="card-title" onClick={handleOpen}> {table.Name} </div>
-                            <div
+                        <Box  borderRadius={16} {...provided.droppableProps} ref ={provided.innerRef} className="card hoverable" >
+                                <div className="card-title" onClick={handleOpen}> <h5><Label text={table.Name}/> </h5> </div>
+                            <Box borderRadius={16}
                             className="card-action ">
-                            <div> Serving : {table.totalItem} </div>
-                            <div> Total Amount : {table.totalCost} </div>
-                            </div>                            
+                             <Label text={"Serving :"}/> <Label text={table.totalItem}/>
+                             <Label text={"Total Amount :"}/> <Label text={table.totalCost}/>
+                            </Box>                            
                             <Modal
                               open={open}
                               onClose={handleClose}
@@ -38,15 +38,12 @@ function TableDetail({table,index,id}) {
                             <TableData table={table}/>
                             </Modal>
                             {provided.placeholder}    
-                        </div> 
+                        </Box> 
+                        
                         )}
                         </Droppable>                    
                     </div>
-                  
-     </div>
-   
-
-      
+     </div>    
     )
 }
 

@@ -5,13 +5,14 @@ import { Droppable } from 'react-beautiful-dnd'
 
 function ItemList( ) {
     
-    const items  = useSelector(state=>state.item)
+    const items  = useSelector(state=>state.item);
 
     return (
         <Droppable droppableId={"1"}>
             {provided => (
                         <div {...provided.droppableProps} ref ={provided.innerRef} className='container'> 
                         <div className='row'>
+                          {/* <h4>  Item </h4> */}
                             {
                                items && 
                                items.map((item,index) => <ItemDetail item={item} index={index} key={item.id} id={item.id}/>)
